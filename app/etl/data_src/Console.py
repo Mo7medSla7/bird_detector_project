@@ -10,7 +10,7 @@ class ConsoleTypes(Enum):
 
 class Console(IDataTypes):
     def __init__(self, type) -> None:
-        super().__init__(type)
+        self.type = type
 
     def extract(self):
         raise NotImplementedError('Extract method not implemented for console')

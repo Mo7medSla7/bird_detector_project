@@ -54,8 +54,8 @@ def transform(data:pd.DataFrame, criteria:dict) -> pd.DataFrame:
 
 def load(data:pd.DataFrame, data_destination:str,source_type:str):
     global result
-    data = DataSrcFactory.createDataObj(source_type,data_destination)
-    result = data_destination.load(data,data_destination)
+    data_source = DataSrcFactory.createDataObj(source_type,data_destination)
+    result = data_source.load(data,data_destination)
     if result is None:
         result = "Execution Done!"
     return data

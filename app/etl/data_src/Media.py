@@ -12,8 +12,7 @@ class MediaTypes(Enum):
 class Media(IDataTypes):
     """Media"""
     def __init__(self,type):
-        super().__init__(type)
-
+        self.type = type
     def extract(self,path):
         res = readAndDetect(path)
         return res

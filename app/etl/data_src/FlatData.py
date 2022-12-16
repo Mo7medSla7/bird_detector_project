@@ -14,7 +14,7 @@ class FlatDataTypes(Enum):
 class FlatData(IDataTypes):
     def __init__(self,type):
         self.type = type
-        super().__init__(self,type)
+        # super().__init__(self,type)
 
     def extract(self,path):
 

@@ -17,7 +17,9 @@ class DataSrcFactory():
             FlatDataTypes.XML: lambda: FlatData(FlatDataTypes.XML),
             FlatDataTypes.EXCEL: lambda: FlatData(FlatDataTypes.EXCEL),
             ConsoleTypes.CONSOLE: lambda: Console(ConsoleTypes.CONSOLE),
-            ConsoleTypes.OTHER: lambda: Console(ConsoleTypes.OTHER)
+            ConsoleTypes.OTHER: lambda: Console(ConsoleTypes.OTHER),
+            MediaTypes.IMAGE: lambda: Media(MediaTypes.IMAGE),
+            MediaTypes.VIDEO: lambda: Media(MediaTypes.VIDEO),
         }
         return objs[objType]()
 
@@ -40,11 +42,11 @@ class DataSrcFactory():
             return FlatDataTypes.EXCEL
         elif (type == 'video'):
             return MediaTypes.VIDEO
-        elif (type == 'img'):
+        elif (type == 'image'):
             return MediaTypes.IMAGE
-        elif (type == 'stdout'):
+        elif (type == 'consol'):
             return ConsoleTypes.CONSOLE
-        elif (type == 'custom'):
+        elif (type == 'other'):
             return ConsoleTypes.OTHER
         else:
             raise ValueError( type + " is not supported datasource type")

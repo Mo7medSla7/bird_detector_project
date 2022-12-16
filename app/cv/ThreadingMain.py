@@ -1,24 +1,21 @@
-from Reader  import VideoReader
-from detector import BirdDetector
 import threading
 from queue import Queue
 import cv2
-
+from app.cv.Reader import VideoReader
+from app.cv.detector import BirdDetector
 
 def readAndDetect(path):
     lock = threading.Semaphore(0)
     SENTINEL = object()  #SENTINEL OBJECT
     SHARED_Q = Queue()
     res = dict()
-    birdsCascade = cv2.CascadeClassifier("birds1.xml")
-    cap = cv2.VideoCapture(path)
+    birdsCascade = cv2.CascadeClassifier("F:\Collage\\4th year\Compilers Project\project\\app\cv\\birds1.xml")
 
-    reader = VideoReader(cap=cap , sentinel=SENTINEL ,queue=SHARED_Q)
+    reader = VideoReader(path=path , sentinel=SENTINEL ,queue=SHARED_Q)
+
     detector = BirdDetector( lock=lock, sentinel=SENTINEL, queue=SHARED_Q , res=res ,birdsCascade = birdsCascade)
     reader.start()
     data = detector.start()
     lock.acquire()
-    return res['MaxBirds']
-
-print(readAndDetect('vid.mp4'))
+    return str(res['MaxBirds'])
 

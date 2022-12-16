@@ -26,11 +26,15 @@ def p_select(p):
 
     if type(p[3]) == str:
         p[3] = "'" + p[3] + "'"
-
     file_type,file_path = p[5].split(":",1)
     p[5] = str(p[5]).replace("\\", "\\\\")
     file_path = file_path.replace('\\', '\\\\')
     p[6] = str(p[6]).replace("\\", "\\\\")
+    if p[6] != 'other':
+        load_type,load_path = p[6].split(":",1)
+    else:
+        load_type = p[6]
+        load_path = p[6]
     p[0] = (
         f"from app import etl\n"
         f"\n"
@@ -45,7 +49,7 @@ def p_select(p):
         f"        'LIMIT':    {p[9]},\n"
         f"    }}\n"
         f")\n"
-        f"etl.load(data, '{p[6]}','{file_type}')\n"
+        f"etl.load(data, '{load_path}','{load_type}')\n"
     )
     
 
@@ -201,7 +205,7 @@ def p_into(p):
 
 def p_into_empty(p):
     'into : empty'
-    p[0] = 'CONSOLE'
+    p[0] = 'other'
 
 
 
