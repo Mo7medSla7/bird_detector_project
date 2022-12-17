@@ -10,15 +10,15 @@ class DataSrcFactory():
         objType = cls.getType(type)
         objs = {
             DatabaseTypes.MSSQL: lambda: Database(DatabaseTypes.MSSQL,path),
-            DatabaseTypes.SQLLITE: lambda: Database(DatabaseTypes.SQLLITE,path),
+            DatabaseTypes.SQLITE: lambda: Database(DatabaseTypes.SQLITE,path),
             FlatDataTypes.JSON: lambda: FlatData(FlatDataTypes.JSON),
             FlatDataTypes.HTML: lambda: FlatData(FlatDataTypes.HTML),
             FlatDataTypes.CSV: lambda: FlatData(FlatDataTypes.CSV),
             FlatDataTypes.XML: lambda: FlatData(FlatDataTypes.XML),
             FlatDataTypes.EXCEL: lambda: FlatData(FlatDataTypes.EXCEL),
             ConsoleTypes.CONSOLE: lambda: Console(ConsoleTypes.CONSOLE),
-            ConsoleTypes.OTHER: lambda: Console(ConsoleTypes.OTHER),
-            MediaTypes.IMAGE: lambda: Media(MediaTypes.IMAGE),
+            ConsoleTypes.GUI: lambda: Console(ConsoleTypes.GUI),
+            MediaTypes.IMAGES: lambda: Media(MediaTypes.IMAGES),
             MediaTypes.VIDEO: lambda: Media(MediaTypes.VIDEO),
         }
         return objs[objType]()
@@ -26,27 +26,27 @@ class DataSrcFactory():
     @classmethod
     def getType(cls,type):
         type = type.lower()
-        if (type == 'mssql'):
+        if type == 'mssql':
             return DatabaseTypes.MSSQL
-        elif (type == 'sqllite'):
-            return DatabaseTypes.SQLLITE
-        elif (type == 'json'):
+        elif type == 'sqlite':
+            return DatabaseTypes.SQLITE
+        elif type == 'json':
             return FlatDataTypes.JSON
-        elif (type == 'html'):
+        elif type == 'html':
             return FlatDataTypes.HTML
-        elif (type == 'csv'):
+        elif type == 'csv':
             return FlatDataTypes.CSV
-        elif (type == 'xml'):
+        elif type == 'xml':
             return FlatDataTypes.XML
-        elif (type == 'excel'):
+        elif type == 'excel':
             return FlatDataTypes.EXCEL
-        elif (type == 'video'):
+        elif type== 'video':
             return MediaTypes.VIDEO
-        elif (type == 'image'):
-            return MediaTypes.IMAGE
-        elif (type == 'consol'):
+        elif type == 'images' or type == 'folder' or type == 'image':
+            return MediaTypes.IMAGES
+        elif type == 'console':
             return ConsoleTypes.CONSOLE
-        elif (type == 'other'):
-            return ConsoleTypes.OTHER
+        elif type == 'gui':
+            return ConsoleTypes.GUI
         else:
-            raise ValueError( type + " is not supported datasource type")
+            raise ValueError(type + " is not supported datasource type")

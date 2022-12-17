@@ -30,7 +30,7 @@ def p_select(p):
     p[5] = str(p[5]).replace("\\", "\\\\")
     file_path = file_path.replace('\\', '\\\\')
     p[6] = str(p[6]).replace("\\", "\\\\")
-    if p[6] != 'other':
+    if p[6] != 'gui':
         load_type,load_path = p[6].split(":",1)
     else:
         load_type = p[6]
@@ -205,7 +205,7 @@ def p_into(p):
 
 def p_into_empty(p):
     'into : empty'
-    p[0] = 'other'
+    p[0] = 'gui'
 
 
 

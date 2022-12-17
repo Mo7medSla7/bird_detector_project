@@ -6,7 +6,7 @@ from app.etl.data_src.IDataTypes import IDataTypes
 
 class DatabaseTypes(Enum):
     MSSQL = 'mssql'
-    SQLLITE = 'sqllite'
+    SQLITE = 'sqlite'
 
 
 class Database(IDataTypes):
@@ -21,7 +21,7 @@ class Database(IDataTypes):
             self.engine = sqlalchemy.create_engine(
                 f'mssql+pyodbc://{server_name}/{db_name}?trusted_connection=yes&driver=SQL+Server+Native+Client+11.0')
             table = self.engine.execute(f"SELECT * FROM {self.table_name};")
-        elif type == DatabaseTypes.SQLLITE:
+        elif type == DatabaseTypes.SQLITE:
             self.table_name = path.split('/')[1]
             self.engine = sqlalchemy.create_engine(f'sqlite:///{self.path}/')
 

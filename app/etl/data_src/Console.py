@@ -5,7 +5,7 @@ from enum import Enum
 
 class ConsoleTypes(Enum):
     CONSOLE = 'console'
-    OTHER = 'other'
+    GUI = 'gui'
 
 
 class Console(IDataTypes):
@@ -18,5 +18,5 @@ class Console(IDataTypes):
     def load(self, data, file_path):
         if self.type == ConsoleTypes.CONSOLE:
             print(data)
-        elif self.type == ConsoleTypes.OTHER:
+        elif self.type == ConsoleTypes.GUI:
             return data
