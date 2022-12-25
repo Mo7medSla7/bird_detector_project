@@ -1,5 +1,5 @@
 import pandas as pd
-from app.cv.OperationMain import filterColumns
+from app.cv.test.OperationMain import Operators
 from app.etl.data_src.DataSrcFactory import DataSrcFactory
 from app.etl.helpers import __filter
 
@@ -20,9 +20,11 @@ def transform(data:pd.DataFrame, criteria:dict) -> pd.DataFrame:
     if type(data) == list:
         if criteria['COLUMNS'] != '__all__' :
             columns = criteria['COLUMNS']
-            data = filterColumns(columns,data)
+            data = Operators().filterColumns(columns,data)
         else:
             data = pd.DataFrame(data)
+    elif type(data) == object:
+        pass
 
     else:
         print('step over')

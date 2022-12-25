@@ -16,9 +16,10 @@ class DataSrcFactory():
             FlatDataTypes.CSV: lambda: FlatData(FlatDataTypes.CSV),
             FlatDataTypes.XML: lambda: FlatData(FlatDataTypes.XML),
             FlatDataTypes.EXCEL: lambda: FlatData(FlatDataTypes.EXCEL),
+            FlatDataTypes.FORMATTED_EXCEL: lambda: FlatData(FlatDataTypes.FORMATTED_EXCEL),
             ConsoleTypes.CONSOLE: lambda: Console(ConsoleTypes.CONSOLE),
             ConsoleTypes.GUI: lambda: Console(ConsoleTypes.GUI),
-            MediaTypes.IMAGES: lambda: Media(MediaTypes.IMAGES),
+            MediaTypes.IMAGES: lambda: Media(MediaTypes.IMAGES,path),
             MediaTypes.VIDEO: lambda: Media(MediaTypes.VIDEO),
         }
         return objs[objType]()
@@ -40,6 +41,8 @@ class DataSrcFactory():
             return FlatDataTypes.XML
         elif type == 'excel':
             return FlatDataTypes.EXCEL
+        elif type == 'formatted excel':
+            return FlatDataTypes.FORMATTED_EXCEL
         elif type== 'video':
             return MediaTypes.VIDEO
         elif type == 'images' or type == 'folder' or type == 'image':

@@ -10,6 +10,7 @@ class FlatDataTypes(Enum):
     JSON = 'json'
     XML = 'xml'
     HTML ='html'
+    FORMATTED_EXCEL = 'formatted excel'
 
 class FlatData(IDataTypes):
     def __init__(self,type):
@@ -45,5 +46,7 @@ class FlatData(IDataTypes):
                 data.to_xml(path)
             case FlatDataTypes.HTML:
                 data.to_html(path)
+            case FlatDataTypes.FORMATTED_EXCEL:
+                data.process_frames(path)
 
 
